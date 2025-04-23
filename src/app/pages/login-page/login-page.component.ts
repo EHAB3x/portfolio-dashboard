@@ -27,14 +27,12 @@ export class LoginPageComponent {
 
   }
   userLogin(){
-    this.authService.login(this.loginData.username,this.loginData.password).subscribe({
+    this.authService.login(this.loginData).subscribe({
       next:(res)=>{
         this.notifier.show({
           type: 'success',
           message:res.message,
         });
-
-        this.authService.userLoggedIn(res.token);
 
         // this.router.navigateByUrl("/home")
       },
