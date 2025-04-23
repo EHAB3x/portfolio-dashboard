@@ -9,17 +9,13 @@ import { ILoginData } from '../interfaces/ilogin-data';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  isUserLoggedIn: BehaviorSubject<boolean>;
-
+  private isUserLoggedIn: BehaviorSubject<boolean>;
 
   constructor(private httpClient: HttpClient) {
     this.isUserLoggedIn = new BehaviorSubject<boolean>(false);
   }
 
   login(userDetails: ILoginData):Observable<ILoginResponse>{
-    this.getAuthStatus().next(true);
-
-
     let loginResponse = this.httpClient.post<ILoginResponse>(`${environment.baseUrl}/login`,{
       username: userDetails.username,
       password: userDetails.password
@@ -35,15 +31,17 @@ export class AuthServiceService {
       }
     });
 
+    this.getAuthStatus().next(true);
+
     return loginResponse;
   }
 
   getAuthStatus(): BehaviorSubject<boolean>{
-    return this.isUserLoggedIn;;
+    return this.isUserLoggedIn;
   }
 
   userLoggedOut(){
-    this.isUserLoggedIn = new BehaviorSubject<boolean>(false);
+    this.getAuthStatus().next(false);
     window.localStorage.removeItem('token');
   }
 }
