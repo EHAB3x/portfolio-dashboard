@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILoginResponse } from '../interfaces/ilogin-response';
@@ -17,12 +17,18 @@ export class AuthServiceService {
     return this.httpClient.post<ILoginResponse>(`${environment.baseUrl}/login`,{
       username,
       password
+    },{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
     })
   }
 
-  userLoggedIn(token: string){
+  userLoggedIn(token?: string){
     this.isUserLoggedIn = true;
-    window.localStorage.setItem('token', token);
+    if (token) {
+      window.localStorage.setItem('token', token);
+    }
   }
 
   userLoggedOut(){
