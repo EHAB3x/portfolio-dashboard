@@ -34,7 +34,7 @@ export class LoginPageComponent {
           message:res.message,
         });
 
-        // this.router.navigateByUrl("/home")
+        this.router.navigateByUrl("/dashboard")
       },
       error:(err)=>{
         this.notifier.show({
