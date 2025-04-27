@@ -4,7 +4,6 @@ import { ILoginData } from '../../core/interfaces/ilogin-data';
 import { CommonModule } from '@angular/common';
 import { NotifierService } from 'angular-notifier';
 import { AuthServiceService } from '../../core/services/auth-service.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -22,7 +21,6 @@ export class LoginPageComponent {
   constructor(
     private notifier: NotifierService,
     private authService: AuthServiceService,
-    private router: Router
   ){
 
   }
@@ -34,7 +32,6 @@ export class LoginPageComponent {
           message:res.message,
         });
 
-        this.router.navigateByUrl("/dashboard")
       },
       error:(err)=>{
         this.notifier.show({

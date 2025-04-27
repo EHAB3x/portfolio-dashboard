@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ILoginResponse } from '../interfaces/ilogin-response';
 import { environment } from '../../../environments/environment';
 import { ILoginData } from '../interfaces/ilogin-data';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ import { ILoginData } from '../interfaces/ilogin-data';
 export class AuthServiceService {
   private isUserLoggedIn: BehaviorSubject<boolean>;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+      private httpClient: HttpClient,
+      private router: Router
+    ) {
     this.isUserLoggedIn = new BehaviorSubject<boolean>(false);
   }
 
@@ -28,11 +32,10 @@ export class AuthServiceService {
     loginResponse.subscribe({
       next:(res)=> {
         localStorage.setItem("token", res.token!)
+        this.getAuthStatus().next(true);
+        this.router.navigateByUrl("/")
       }
     });
-
-    this.getAuthStatus().next(true);
-
     return loginResponse;
   }
 
@@ -41,7 +44,8 @@ export class AuthServiceService {
   }
 
   userLoggedOut(){
-    this.getAuthStatus().next(false);
     window.localStorage.removeItem('token');
+    this.getAuthStatus().next(false);
+    this.router.navigateByUrl("/login")
   }
 }
