@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit{
     this.authService.getAuthStatus().subscribe({
       next:(status=> {
         this.userStatus = status
-        console.log(this.userStatus);
       }),
     });
   }

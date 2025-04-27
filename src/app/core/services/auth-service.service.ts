@@ -48,4 +48,13 @@ export class AuthServiceService {
     this.getAuthStatus().next(false);
     this.router.navigateByUrl("/login")
   }
+
+  getToken() : string{
+    if(this.getAuthStatus().getValue()){
+      return window.localStorage.getItem("token") as string
+    }
+    else{
+      return ""
+    }
+  }
 }
