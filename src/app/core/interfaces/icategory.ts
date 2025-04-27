@@ -1,4 +1,4 @@
-export interface IEducation {
+export interface ICategory {
   id: number,
   description: string,
   features: string[],
