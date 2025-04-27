@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ILoginData } from '../../core/interfaces/ilogin-data';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit{
   loginData: ILoginData = {
     username: '',
     password: ''
@@ -23,9 +23,17 @@ export class LoginPageComponent {
     private notifier: NotifierService,
     private authService: AuthServiceService,
     private router: Router
-  ){
+  ){}
 
+  ngOnInit(): void {
+    this.authService.getAuthStatus().subscribe({
+      next:()=>{
+        this.router.navigateByUrl("/")
+      }
+    })
   }
+
+
   userLogin(){
     this.authService.login(this.loginData).subscribe({
       next:(res)=>{
@@ -34,7 +42,6 @@ export class LoginPageComponent {
           message:res.message,
         });
 
-        // this.router.navigateByUrl("/home")
       },
       error:(err)=>{
         this.notifier.show({
