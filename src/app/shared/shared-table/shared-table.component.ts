@@ -3,7 +3,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { IEducation } from '../../core/interfaces/ieducation';
+import { TableOptions } from '../../core/types/TableType';
 
 @Component({
   selector: 'app-shared-table',
@@ -14,10 +14,10 @@ import { IEducation } from '../../core/interfaces/ieducation';
 })
 export class SharedTableComponent implements OnInit, OnChanges {
   @Input() type: string = '';
-  @Input() tableData: IEducation[] = [];
+  @Input() tableData: TableOptions[] = [];
 
   tableRawData: any[][] = [];
-  originalTableData: IEducation[] = [];
+  originalTableData: TableOptions[] = [];
   columns: string[] = [];
   searchControl = new FormControl('');
 
@@ -65,7 +65,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
     this.updateRawData(filteredData);
   }
 
-  private updateRawData(data: IEducation[]): void {
+  private updateRawData(data: TableOptions[]): void {
     this.tableRawData = data.map(item => Object.values(item));
   }
 }

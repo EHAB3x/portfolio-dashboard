@@ -1,5 +1,5 @@
 export interface ISkills {
-  id: 0;
+  id: number;
   level: string;
   name: string;
 }
