@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { debounceTime } from 'rxjs';
+import { IEducation } from '../../core/interfaces/ieducation';
+import { EducationApiService } from '../../core/services/education-api.service';
 
 @Component({
   selector: 'app-education',
@@ -12,10 +14,13 @@ import { debounceTime } from 'rxjs';
 })
 export class EducationComponent implements OnInit{
   name !: string;
-
   searchControl = new FormControl('');
+  educationData : IEducation[] = [] as IEducation[];
 
-  constructor(private router: Router){
+  constructor(
+    private router: Router,
+    private educationService: EducationApiService
+  ){
   }
 
   ngOnInit(): void {
@@ -27,7 +32,13 @@ export class EducationComponent implements OnInit{
     )
     .subscribe({
       next:(res)=>{
+      }
+    })
 
+    this.educationService.getAllEducation().subscribe({
+      next:(res)=>{
+        this.educationData = res;
+        console.log(res);
       }
     })
   }
