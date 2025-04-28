@@ -17,7 +17,6 @@ export class EducationApiService {
   ) { }
 
   getAllEducation(): Observable<IEducation[]> {
-    console.log(this.authService.getToken());
     return this.httpClient.get<IEducation[]>(`${environment.baseUrl}/Education`, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken()}`,

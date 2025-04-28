@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { IEducation } from '../../core/interfaces/ieducation';
 import { EducationApiService } from '../../core/services/education-api.service';
+import { SharedTableComponent } from "../../shared/shared-table/shared-table.component";
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, SharedTableComponent],
   templateUrl: './education.component.html',
   styleUrl: './education.component.scss'
 })
@@ -38,7 +39,6 @@ export class EducationComponent implements OnInit{
     this.educationService.getAllEducation().subscribe({
       next:(res)=>{
         this.educationData = res;
-        console.log(res);
       }
     })
   }
