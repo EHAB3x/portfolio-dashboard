@@ -1,37 +1,71 @@
 import { CommonModule } from '@angular/common';
-import { IEducation } from './../../core/interfaces/ieducation';
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+import { IEducation } from '../../core/interfaces/ieducation';
 
 @Component({
   selector: 'app-shared-table',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule],
   templateUrl: './shared-table.component.html',
-  styleUrl: './shared-table.component.scss'
+  styleUrls: ['./shared-table.component.scss'],
 })
-export class SharedTableComponent implements OnChanges{
-  @Input() type : string = '';
-  @Input() tableData !: IEducation[];
-  tableRawData : IEducation[][] = [];
+export class SharedTableComponent implements OnInit, OnChanges {
+  @Input() type: string = '';
+  @Input() tableData: IEducation[] = [];
 
-  columns !: string[];
+  tableRawData: any[][] = [];
+  originalTableData: IEducation[] = [];
+  columns: string[] = [];
+  searchControl = new FormControl('');
 
-  constructor(){
-
+  ngOnInit(): void {
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300)
+    ).subscribe({
+      next: (searchTerm) => {
+        if (!searchTerm) {
+          this.restoreOriginalData();
+        } else {
+          this.filterData(searchTerm);
+        }
+      },
+    });
   }
 
   ngOnChanges(): void {
-    if(this.tableData.length > 0){
-      this.columns = Object.keys(this.tableData[0]);
-
-
-
-      for(let i = 0; i < this.tableData.length; i++){
-        // tableRawData.push()
-        let tableRow = Object.values(this.tableData[i]);
-        this.tableRawData.push(tableRow)
-      }
+    if (this.tableData.length > 0) {
+      this.originalTableData = [...this.tableData];
+      this.initializeTableData();
     }
+  }
+
+  private initializeTableData(): void {
+    this.columns = Object.keys(this.tableData[0]);
+    this.tableRawData = this.tableData.map(item => Object.values(item));
+  }
+
+  private restoreOriginalData(): void {
+    this.tableData = [...this.originalTableData];
+    this.initializeTableData();
+  }
+
+  private filterData(filterText: string): void {
+    const searchTerm = filterText.toLowerCase();
+
+    const filteredData = this.originalTableData.filter(item => {
+      return Object.values(item).some(value =>
+        String(value).toLowerCase().includes(searchTerm)
+      );
+    });
+
+    this.tableData = filteredData;
+    this.updateRawData(filteredData);
+  }
+
+  private updateRawData(data: IEducation[]): void {
+    this.tableRawData = data.map(item => Object.values(item));
   }
 }
