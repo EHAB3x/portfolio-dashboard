@@ -5,11 +5,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { TableOptions } from '../../core/types/TableType';
 import { PaginationComponent } from "../pagination/pagination.component";
+import { SpinnerComponent } from "../spinner/spinner.component";
 
 @Component({
   selector: 'app-shared-table',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule, PaginationComponent],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, PaginationComponent, SpinnerComponent],
   templateUrl: './shared-table.component.html',
   styleUrls: ['./shared-table.component.scss'],
 })
@@ -21,6 +22,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
   originalTableData: TableOptions[] = [];
   columns: string[] = [];
   initialPage : number = 1;
+  isLoading: boolean = false;
   searchControl = new FormControl('');
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class SharedTableComponent implements OnInit, OnChanges {
     if (this.tableData.length > 0) {
       this.originalTableData = [...this.tableData];
       this.initializeTableData();
+      this.isLoading = true
+    }else{
+      this.isLoading = false
     }
   }
 

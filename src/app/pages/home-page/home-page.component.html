@@ -2,7 +2,9 @@
   <div class="container mx-auto flex flex-col gap-8">
     <h1 class="text-2xl text-center font-bold">Welcome To the Dashboard</h1>
 
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
+    <app-spinner *ngIf="!isLoading"></app-spinner>
+
+    <div *ngIf="isLoading" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
       @for (item of homeCards; track item.length) {
         <div class="flex flex-col justify-between max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
