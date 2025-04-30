@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { TableOptions } from '../../core/types/TableType';
+import { PaginationComponent } from "../pagination/pagination.component";
 
 @Component({
   selector: 'app-shared-table',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, PaginationComponent],
   templateUrl: './shared-table.component.html',
   styleUrls: ['./shared-table.component.scss'],
 })
@@ -19,6 +20,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
   tableRawData: any[][] = [];
   originalTableData: TableOptions[] = [];
   columns: string[] = [];
+  initialPage : number = 1;
   searchControl = new FormControl('');
 
   ngOnInit(): void {
@@ -44,7 +46,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
 
   private initializeTableData(): void {
     this.columns = Object.keys(this.tableData[0]);
-    this.tableRawData = this.tableData.map(item => Object.values(item));
+    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, (this.initialPage * 10) - 1);
   }
 
   private restoreOriginalData(): void {
@@ -67,5 +69,11 @@ export class SharedTableComponent implements OnInit, OnChanges {
 
   private updateRawData(data: TableOptions[]): void {
     this.tableRawData = data.map(item => Object.values(item));
+  }
+
+  onPagChange(page : number){
+    this.initialPage = page;
+    console.log(this.initialPage);
+    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, (this.initialPage * 10) - 1);
   }
 }
