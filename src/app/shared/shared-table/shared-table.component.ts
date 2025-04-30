@@ -46,7 +46,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
 
   private initializeTableData(): void {
     this.columns = Object.keys(this.tableData[0]);
-    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, (this.initialPage * 10) - 1);
+    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, this.initialPage * 10);
   }
 
   private restoreOriginalData(): void {
@@ -73,7 +73,6 @@ export class SharedTableComponent implements OnInit, OnChanges {
 
   onPagChange(page : number){
     this.initialPage = page;
-    console.log(this.initialPage);
-    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, (this.initialPage * 10) - 1);
+    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, this.initialPage * 10);
   }
 }
