@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { HeaderComponent } from "./layouts/header/header.component";
@@ -12,7 +12,7 @@ import { AuthServiceService } from './core/services/auth-service.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit  {
+export class AppComponent implements OnInit, AfterViewInit{
   title = 'portfolio-dashboard';
 
   constructor(private authService: AuthServiceService){
@@ -20,11 +20,14 @@ export class AppComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    initFlowbite();
     window.onload=()=>{
       if(window.localStorage.getItem("token")){
         this.authService.getAuthStatus().next(true);
       }
     }
+  }
+
+  ngAfterViewInit(){
+    initFlowbite();
   }
 }

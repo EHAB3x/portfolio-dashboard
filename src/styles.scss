@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/scss/styles.scss';
 @import "angular-notifier/styles";
+
+.container {
+  padding: 0 1.25rem;
+  @media screen and (max-width: $max_mobile) {
+    padding: 0 0.75rem;
+  }
+  @media screen and (max-width: $max_small_mobile) {
+    padding: 0 0.5rem;
+  }
+}
