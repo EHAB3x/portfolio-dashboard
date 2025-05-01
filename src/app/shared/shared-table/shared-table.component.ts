@@ -1,3 +1,4 @@
+import { PaginationService } from './../../core/services/pagination.service';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -21,9 +22,16 @@ export class SharedTableComponent implements OnInit, OnChanges {
   tableRawData: any[][] = [];
   originalTableData: TableOptions[] = [];
   columns: string[] = [];
-  initialPage : number = 1;
   isLoading: boolean = false;
   searchControl = new FormControl('');
+
+  currentPage !: number;
+
+  constructor(
+    private pagination : PaginationService
+  ){
+
+  }
 
   ngOnInit(): void {
     this.searchControl.valueChanges.pipe(
@@ -51,7 +59,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
 
   private initializeTableData(): void {
     this.columns = Object.keys(this.tableData[0]);
-    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, this.initialPage * 10);
+    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.pagination.getCurrentPage() - 1) * 10, this.pagination.getCurrentPage() * 10);
   }
 
   private restoreOriginalData(): void {
@@ -76,8 +84,8 @@ export class SharedTableComponent implements OnInit, OnChanges {
     this.tableRawData = data.map(item => Object.values(item));
   }
 
-  onPagChange(page : number){
-    this.initialPage = page;
-    this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, this.initialPage * 10);
-  }
+  // onPagChange(page : number){
+  //   this.initialPage = page;
+  //   this.tableRawData = this.tableData.map(item => Object.values(item)).slice((this.initialPage - 1) * 10, this.initialPage * 10);
+  // }
 }

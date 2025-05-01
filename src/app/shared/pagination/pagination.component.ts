@@ -1,3 +1,4 @@
+import { PaginationService } from './../../core/services/pagination.service';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -6,6 +7,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  OnInit
 } from '@angular/core';
 
 @Component({
@@ -15,47 +17,61 @@ import {
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
 })
-export class PaginationComponent implements OnChanges {
+export class PaginationComponent implements OnInit,OnChanges {
   @Input() totalRows!: number;
-  currentPage: number = 1;
-  pageSize: number = 10;
-  totalPages!: number;
+  currentPage !: number;
+  totalPages !: number;
   pagesArr: number[] = [];
-  @Output() pageChange = new EventEmitter<number>();
 
-  constructor() {}
+  constructor(
+    private pagination :PaginationService
+  ) {}
+
+  ngOnInit(): void {
+    this.pagination.currentPage.subscribe({
+      next:(res)=>{
+        this.currentPage = res;
+      }
+    });
+
+    this.pagination.totalPages.subscribe({
+      next:(res)=>{
+        this.totalPages = res;
+        this.pagination.updatePagesArr()
+      }
+    });
+
+    this.pagination.pagesArr.subscribe({
+      next:(res)=>{
+        this.pagesArr = res;
+      }
+    });
+  }
 
   ngOnChanges(): void {
-    this.totalPages = Math.ceil(this.totalRows / this.pageSize);
+    this.pagination.calcTotalPages(this.totalRows);
     if (this.totalPages > 0) {
-      this.updatePagesArr(this.totalPages);
+      this.pagination.updatePagesArr()
     }
   }
 
-  updatePagesArr(totalPages: number) {
-    this.pagesArr = Array(totalPages)
-      .fill(1)
-      .map((x, i) => i + 1);
+  firstPage(){
+    this.pagination.firstPage()
   }
 
-  changePage(page: number): void {
-    this.pageChange.emit(page);
-    this.currentPage = page;
+  previousPage(){
+    this.pagination.previousPage()
   }
 
-  previousPage(): void {
-    this.changePage(--this.currentPage);
+  nextPage(){
+    this.pagination.nextPage()
   }
 
-  nextPage(): void {
-    this.changePage(++this.currentPage);
+  lastPage(){
+    this.pagination.lastPage()
   }
 
-  firstPage(): void {
-    this.changePage(1);
-  }
-
-  lastPage(): void {
-    this.changePage(this.totalPages);
+  changePage(num : number){
+    this.pagination.setCurrentPage(num)
   }
 }
