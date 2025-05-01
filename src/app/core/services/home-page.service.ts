@@ -20,11 +20,7 @@ export class HomePageService{
   }
 
   getHomeData():Observable<IHomePage[]>{
-    let homeResponse = this.httpClient.get<IHomePage[]>(`${environment.baseUrl}/Home`,{
-      headers: new HttpHeaders({
-        'Authorization': this.token
-      })
-    })
+    let homeResponse = this.httpClient.get<IHomePage[]>(`${environment.baseUrl}/Home`)
 
     homeResponse.subscribe({
       next:(res)=>{

@@ -4,7 +4,7 @@
   >
     <div>
       <a
-        [routerLink]="'add-' + type"
+        [routerLink]="'/add-' + type"
         type="button"
         class="block w-fit focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 capitalize"
         >Add {{ type }}</a
@@ -51,9 +51,8 @@
     </div>
   </div>
 
-  <app-spinner *ngIf="!isLoading"></app-spinner>
 
-  <div *ngIf="isLoading" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table
       class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
     >
@@ -65,9 +64,13 @@
           <th scope="col" class="px-6 py-3">
             {{ column }}
           </th>
+        }@empty {
+            <th scope="col" class="px-6 py-3">
+              There is No {{type}} to view
+            </th>
           }
 
-          <th scope="col" class="px-6 py-3">Actions</th>
+          <th *ngIf="!isempty" scope="col" class="px-6 py-3">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -88,11 +91,11 @@
             {{ row }}
           </td>
           } }
-          <td class="px-6 py-4">
+          <td class="flex flex-wrap justify-center items-center gap-2 px-6 py-4">
             <a
-              [routerLink]="'edit-' + type + '/' + item[0]"
-              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >Edit</a
+              [routerLink]="'/edit-' + type + '/' + item[0]"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              >Edit & Delete</a
             >
           </td>
         </tr>
@@ -102,7 +105,7 @@
   </div>
 
   <app-pagination
-    *ngIf="isLoading"
+    *ngIf="!isempty"
     [totalRows]="originalTableData.length"
   >
   </app-pagination>
