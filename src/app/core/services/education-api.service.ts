@@ -17,29 +17,16 @@ export class EducationApiService {
   ) { }
 
   getAllEducation(): Observable<IEducation[]> {
-    return this.httpClient.get<IEducation[]>(`${environment.baseUrl}/Education`, {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-      })
-    });
+    return this.httpClient.get<IEducation[]>(`${environment.baseUrl}/Education`);
   }
 
   addEducation(newEducation: IEducation):Observable<void>{
     return this.httpClient.post<void>(`${environment.baseUrl}/Education`,
-    newEducation,
-    {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-      })
-    })
-  }
+    newEducation
+  )}
 
   deleteEducation(eduId:number):Observable<void>{
-    return this.httpClient.delete<void>(`${environment.baseUrl}/Education/${eduId}`,{
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-      })
-    })
+    return this.httpClient.delete<void>(`${environment.baseUrl}/Education/${eduId}`)
   }
 
 }
