@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { authGuard } from './core/guards/auth.guard';
-import { EducationComponent } from './pages/education/education.component';
+import { EducationComponent } from './pages/educationModule/education/education.component';
+import { AddEducationComponent } from './pages/educationModule/add-education/add-education.component';
 
 export const routes: Routes = [
   {
@@ -19,8 +20,9 @@ export const routes: Routes = [
     path: 'educations',
     component: EducationComponent,
     canActivate:[authGuard],
-    children:[
-      // {path:"/add-educations"}
-    ]
   },
+  {
+    path:"add-educations",
+    component:AddEducationComponent
+  }
 ];

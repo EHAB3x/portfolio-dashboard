@@ -1,5 +1,5 @@
 export interface IEducation {
-  id: number;
+  id ?: number;
   country: string;
   date: string;
   place: string;

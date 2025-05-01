@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { IEducation } from '../../core/interfaces/ieducation';
-import { EducationApiService } from '../../core/services/education-api.service';
-import { SharedTableComponent } from "../../shared/shared-table/shared-table.component";
+import { SharedTableComponent } from '../../../shared/shared-table/shared-table.component';
+import { EducationApiService } from '../../../core/services/education-api.service';
+import { IEducation } from '../../../core/interfaces/ieducation';
 
 @Component({
   selector: 'app-education',

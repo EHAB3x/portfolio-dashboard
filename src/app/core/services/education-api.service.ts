@@ -24,4 +24,14 @@ export class EducationApiService {
     });
   }
 
+  addEducation(newEducation: IEducation):Observable<void>{
+    return this.httpClient.post<void>(`${environment.baseUrl}/Education`,
+    newEducation,
+    {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+      })
+    })
+  }
+
 }
