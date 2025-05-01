@@ -29,4 +29,14 @@ export class EducationApiService {
     return this.httpClient.delete<void>(`${environment.baseUrl}/Education/${eduId}`)
   }
 
+  getEducationById(eduId : number):Observable<IEducation>{
+    return this.httpClient.get<IEducation>(`${environment.baseUrl}/Education/${eduId}`)
+  }
+
+  updateEduById(eduId :number, newEdu: IEducation):Observable<IEducation>{
+    return this.httpClient.put<IEducation>(
+      `${environment.baseUrl}/Education/${eduId}`,
+      newEdu
+    )
+  }
 }

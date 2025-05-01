@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { authGuard } from './core/guards/auth.guard';
 import { EducationComponent } from './pages/educationModule/education/education.component';
 import { AddEducationComponent } from './pages/educationModule/add-education/add-education.component';
+import { EditEducationComponent } from './pages/educationModule/edit-education/edit-education.component';
 
 export const routes: Routes = [
   {
@@ -24,5 +25,9 @@ export const routes: Routes = [
   {
     path:"add-educations",
     component:AddEducationComponent
+  },
+  {
+    path:"edit-educations/:eduId",
+    component:EditEducationComponent
   }
 ];
