@@ -51,9 +51,8 @@
     </div>
   </div>
 
-  <app-spinner *ngIf="!isLoading"></app-spinner>
 
-  <div *ngIf="isLoading" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table
       class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
     >
@@ -65,9 +64,13 @@
           <th scope="col" class="px-6 py-3">
             {{ column }}
           </th>
+        }@empty {
+            <th scope="col" class="px-6 py-3">
+              There is No {{type}} to view
+            </th>
           }
 
-          <th scope="col" class="px-6 py-3">Actions</th>
+          <th *ngIf="!isempty" scope="col" class="px-6 py-3">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -102,7 +105,7 @@
   </div>
 
   <app-pagination
-    *ngIf="isLoading"
+    *ngIf="!isempty"
     [totalRows]="originalTableData.length"
   >
   </app-pagination>

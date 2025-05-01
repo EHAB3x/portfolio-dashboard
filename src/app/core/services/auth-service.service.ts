@@ -20,7 +20,7 @@ export class AuthServiceService {
   }
 
   login(userDetails: ILoginData):Observable<ILoginResponse>{
-    let loginResponse = this.httpClient.post<ILoginResponse>(`${environment.baseUrl}/login`,{
+    let loginResponse = this.httpClient.post<ILoginResponse>(`${environment.baseUrl}/Auth/login`,{
       username: userDetails.username,
       password: userDetails.password
     },{

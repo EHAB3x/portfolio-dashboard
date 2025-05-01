@@ -16,8 +16,11 @@ export const routes: Routes = [
     component: LoginPageComponent,
   },
   {
-    path: 'education',
+    path: 'educations',
     component: EducationComponent,
-    canActivate:[authGuard]
+    canActivate:[authGuard],
+    children:[
+      // {path:"/add-educations"}
+    ]
   },
 ];

@@ -22,7 +22,7 @@ export class SharedTableComponent implements OnInit, OnChanges {
   tableRawData: any[][] = [];
   originalTableData: TableOptions[] = [];
   columns: string[] = [];
-  isLoading: boolean = false;
+  isempty: boolean = true;
   searchControl = new FormControl('');
 
   currentPage !: number;
@@ -51,9 +51,9 @@ export class SharedTableComponent implements OnInit, OnChanges {
     if (this.tableData.length > 0) {
       this.originalTableData = [...this.tableData];
       this.initializeTableData();
-      this.isLoading = true
+      this.isempty = false;
     }else{
-      this.isLoading = false
+      this.isempty = true;
     }
   }
 
