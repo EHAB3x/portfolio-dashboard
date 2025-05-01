@@ -34,4 +34,12 @@ export class EducationApiService {
     })
   }
 
+  deleteEducation(eduId:number):Observable<void>{
+    return this.httpClient.delete<void>(`${environment.baseUrl}/Education/${eduId}`,{
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+      })
+    })
+  }
+
 }
