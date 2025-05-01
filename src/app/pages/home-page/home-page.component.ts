@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent implements OnInit{
-  isLoading: boolean = false;
+  dataLoaded : boolean = false;
   homeCards : IHomePage [] = [] as IHomePage [];
 
   constructor(
@@ -25,7 +25,7 @@ export class HomePageComponent implements OnInit{
     this.homeService.getHomeData().subscribe({
       next:(res)=>{
         this.homeCards = res;
-        this.isLoading = true
+        this.dataLoaded  = true
       },
     })
   }
