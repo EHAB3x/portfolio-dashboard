@@ -36,9 +36,6 @@ export class AddEducationComponent implements OnInit{
     if (this.educationForm.valid) {
       const newEducation: IEducation = this.educationForm.value;
 
-      console.log( this.educationForm);
-      console.log( this.educationForm.value);
-
       this.educationService.addEducation(newEducation).subscribe({
         next:()=>{
           this.router.navigateByUrl('/educations');

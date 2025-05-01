@@ -35,19 +35,19 @@ export class EditEducationComponent implements OnInit{
     this.educationService.getEducationById(this.eduID).subscribe({
       next:(res)=>{
         this.oldEdu = res;
-        this.editEducationForm = this.fb.group({
-          title:[res.title, Validators.required],
-          place:[res.place, Validators.required],
-          country:[res.country, Validators.required],
-          date:[res.date, Validators.required],
+        this.editEducationForm.patchValue({
+          title:[res.title],
+          place:[res.place],
+          country:[res.country],
+          date:[res.date],
         })
       }
     })
     this.editEducationForm = this.fb.group({
-      title:['', Validators.required],
-      place:['', Validators.required],
-      country:['', Validators.required],
-      date:['', Validators.required],
+      title: ['', Validators.required],
+      place: ['', Validators.required],
+      country: ['', Validators.required],
+      date: ['', Validators.required],
     })
 
   }
