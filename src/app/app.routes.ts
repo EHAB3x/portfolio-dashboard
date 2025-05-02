@@ -6,6 +6,8 @@ import { EducationComponent } from './modules/educationModule/education/educatio
 import { AddEducationComponent } from './modules/educationModule/add-education/add-education.component';
 import { EditEducationComponent } from './modules/educationModule/edit-education/edit-education.component';
 import { HomeEducationComponent } from './modules/educationModule/home-education/home-education.component';
+import { ProjectComponent } from './modules/projectsModule/project/project.component';
+import { HomeProjectComponent } from './modules/projectsModule/home-project/home-project.component';
 
 export const routes: Routes = [
   {
@@ -39,17 +41,19 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
+    component: ProjectComponent,
     canActivate:[authGuard],
     children:[
       {
         path: '',
+        component: HomeProjectComponent,
       },
-      {
-        path:"add-projects",
-      },
-      {
-        path:"edit-projects/:prjId",
-      }
+      // {
+      //   path:"add-projects",
+      // },
+      // {
+      //   path:"edit-projects/:prjId",
+      // }
     ]
   },
 ];
