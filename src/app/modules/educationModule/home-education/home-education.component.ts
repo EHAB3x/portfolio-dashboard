@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { SharedTableComponent } from '../../../shared/shared-table/shared-table.component';
 import { EducationApiService } from '../../../core/services/education-api.service';
 import { IEducation } from '../../../core/interfaces/ieducation';
