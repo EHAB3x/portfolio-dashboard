@@ -36,10 +36,10 @@ export class EditEducationComponent implements OnInit{
       next:(res)=>{
         this.oldEdu = res;
         this.editEducationForm.patchValue({
-          title:[res.title],
-          place:[res.place],
-          country:[res.country],
-          date:[res.date],
+          title:res.title,
+          place:res.place,
+          country:res.country,
+          date:res.date,
         })
       }
     })
@@ -54,6 +54,9 @@ export class EditEducationComponent implements OnInit{
 
   onsubmit(){
     this.newEdu = {...this.editEducationForm.value, id: this.eduID};
+
+    console.log(this.newEdu);
+
 
     this.educationService.updateEduById(this.eduID, this.newEdu).subscribe({
       next:()=>{

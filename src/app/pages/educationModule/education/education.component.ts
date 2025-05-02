@@ -1,34 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { SharedTableComponent } from '../../../shared/shared-table/shared-table.component';
-import { EducationApiService } from '../../../core/services/education-api.service';
-import { IEducation } from '../../../core/interfaces/ieducation';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [SharedTableComponent],
+  imports: [RouterOutlet],
   templateUrl: './education.component.html',
   styleUrl: './education.component.scss'
 })
-export class EducationComponent implements OnInit{
-  name !: string;
-  educationData : IEducation[] = [] as IEducation[];
-  searchText : string = '';
+export class EducationComponent {
 
-  constructor(
-    private router: Router,
-    private educationService: EducationApiService
-  ){
-  }
-
-  ngOnInit(): void {
-    this.name = this.router.url.slice(1);
-
-    this.educationService.getAllEducation().subscribe({
-      next:(res)=>{
-        this.educationData = res;
-      }
-    })
-  }
 }

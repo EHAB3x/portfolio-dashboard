@@ -5,6 +5,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { EducationComponent } from './pages/educationModule/education/education.component';
 import { AddEducationComponent } from './pages/educationModule/add-education/add-education.component';
 import { EditEducationComponent } from './pages/educationModule/edit-education/edit-education.component';
+import { HomeEducationComponent } from './pages/educationModule/home-education/home-education.component';
 
 export const routes: Routes = [
   {
@@ -21,13 +22,19 @@ export const routes: Routes = [
     path: 'educations',
     component: EducationComponent,
     canActivate:[authGuard],
+    children:[
+      {
+        path: '',
+        component: HomeEducationComponent
+      },
+      {
+        path:"add-educations",
+        component:AddEducationComponent
+      },
+      {
+        path:"edit-educations/:eduId",
+        component:EditEducationComponent
+      }
+    ]
   },
-  {
-    path:"add-educations",
-    component:AddEducationComponent
-  },
-  {
-    path:"edit-educations/:eduId",
-    component:EditEducationComponent
-  }
 ];
