@@ -37,4 +37,19 @@ export const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'projects',
+    canActivate:[authGuard],
+    children:[
+      {
+        path: '',
+      },
+      {
+        path:"add-projects",
+      },
+      {
+        path:"edit-projects/:prjId",
+      }
+    ]
+  },
 ];
