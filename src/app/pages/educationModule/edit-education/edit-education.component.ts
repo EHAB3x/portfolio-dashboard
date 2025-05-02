@@ -55,9 +55,6 @@ export class EditEducationComponent implements OnInit{
   onsubmit(){
     this.newEdu = {...this.editEducationForm.value, id: this.eduID};
 
-    console.log(this.newEdu);
-
-
     this.educationService.updateEduById(this.eduID, this.newEdu).subscribe({
       next:()=>{
         this.educationService.getAllEducation();
