@@ -12,6 +12,7 @@ import { AddProject } from './modules/projectsModule/add-project/add-project.com
 import { EditProjectComponent } from './modules/projectsModule/edit-project/edit-project.component';
 import { SkillsComponent } from './modules/skillsModule/skills/skills.component';
 import { HomeSkillsComponent } from './modules/skillsModule/home-skills/home-skills.component';
+import { AddSkillsComponent } from './modules/skillsModule/add-skills/add-skills.component';
 
 export const routes: Routes = [
   {
@@ -70,6 +71,10 @@ export const routes: Routes = [
       {
         path: '',
         component: HomeSkillsComponent,
+      },
+      {
+        path:"add-skills",
+        component: AddSkillsComponent
       },
     ]
   },
