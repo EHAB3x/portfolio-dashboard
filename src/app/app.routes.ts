@@ -9,6 +9,7 @@ import { HomeEducationComponent } from './modules/educationModule/home-education
 import { ProjectComponent } from './modules/projectsModule/project/project.component';
 import { HomeProjectComponent } from './modules/projectsModule/home-project/home-project.component';
 import { AddProject } from './modules/projectsModule/add-project/add-project.component';
+import { EditProjectComponent } from './modules/projectsModule/edit-project/edit-project.component';
 
 export const routes: Routes = [
   {
@@ -53,9 +54,10 @@ export const routes: Routes = [
         path:"add-projects",
         component: AddProject
       },
-      // {
-      //   path:"edit-projects/:prjId",
-      // }
+      {
+        path:"edit-projects/:prjId",
+        component: EditProjectComponent
+      }
     ]
   },
 ];
