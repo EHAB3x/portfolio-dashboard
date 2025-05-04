@@ -11,6 +11,7 @@ import { HomeProjectComponent } from './modules/projectsModule/home-project/home
 import { AddProject } from './modules/projectsModule/add-project/add-project.component';
 import { EditProjectComponent } from './modules/projectsModule/edit-project/edit-project.component';
 import { SkillsComponent } from './modules/skillsModule/skills/skills.component';
+import { HomeSkillsComponent } from './modules/skillsModule/home-skills/home-skills.component';
 
 export const routes: Routes = [
   {
@@ -65,5 +66,11 @@ export const routes: Routes = [
     path: 'skills',
     component: SkillsComponent,
     canActivate:[authGuard],
+    children:[
+      {
+        path: '',
+        component: HomeSkillsComponent,
+      },
+    ]
   },
 ];
