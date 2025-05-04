@@ -36,10 +36,10 @@ export class EditEducationComponent implements OnInit{
       next:(res)=>{
         this.oldEdu = res;
         this.editEducationForm.patchValue({
-          title:[res.title],
-          place:[res.place],
-          country:[res.country],
-          date:[res.date],
+          title:res.title,
+          place:res.place,
+          country:res.country,
+          date:res.date,
         })
       }
     })

@@ -1,16 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEducation } from '../interfaces/ieducation';
 import { environment } from '../../../environments/environment';
-import { AuthServiceService } from './auth-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EducationApiService {
-
-  private authService = inject(AuthServiceService)
 
   constructor(
     private httpClient: HttpClient,

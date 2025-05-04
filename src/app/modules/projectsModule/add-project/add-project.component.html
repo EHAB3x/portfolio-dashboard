@@ -3,13 +3,13 @@
     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
       Add A New Education
     </h2>
-    <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
       <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div class="sm:col-span-2">
           <label
             for="title"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Product Title</label
+            >Title</label
           >
           <input
             formControlName="title"
@@ -17,55 +17,57 @@
             name="title"
             id="title"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Computer Science"
+            placeholder="E-commerce"
             required
           />
         </div>
         <div class="sm:col-span-2">
           <label
-            for="place"
+            for="category"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Place</label
+          >
+            Category
+          </label
           >
           <input
-            formControlName="place"
+            formControlName="category"
             type="text"
-            name="place"
-            id="place"
+            name="category"
+            id="category"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Mansoura University"
+            placeholder="Design"
             required
           />
         </div>
         <div class="sm:col-span-2">
           <label
-            for="country"
+            for="link"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Country</label
+            >Link</label
           >
           <input
-            formControlName="country"
+            formControlName="link"
             type="text"
-            name="country"
-            id="country"
+            name="link"
+            id="link"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Egypt"
+            placeholder="https:github.com/example"
             required
           />
         </div>
         <div class="sm:col-span-2">
           <label
-            for="date"
+            for="imgUrl"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Date</label
+            >Img URL</label
           >
           <input
-            formControlName="date"
+            formControlName="img"
             type="text"
             name="date"
-            id="date"
+            id="imgUrl"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="2021-2025"
+            placeholder="https:example.com"
             required
           />
         </div>
@@ -74,7 +76,7 @@
         type="submit"
         class="mt-8 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
       >
-        Add Education
+        Add Project
       </button>
     </form>
   </div>

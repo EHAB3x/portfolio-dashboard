@@ -1,3 +1,4 @@
+import { HomePageService } from './../../core/services/home-page.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthServiceService } from '../../core/services/auth-service.service';
@@ -12,10 +13,12 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent implements OnInit{
   userStatus !: boolean;
+  links : string[] = [] as string[];
 
-  constructor(private authService: AuthServiceService){
-
-  }
+  constructor(
+    private authService : AuthServiceService,
+    private homeService : HomePageService
+  ) {}
 
   ngOnInit(): void {
     this.authService.getAuthStatus().subscribe({
@@ -23,6 +26,12 @@ export class HeaderComponent implements OnInit{
         this.userStatus = status
       }),
     });
+
+    this.homeService.getHomeData().subscribe({
+      next:(res)=>{
+        this.links = res.map((item)=> item.link.toLowerCase());
+      }
+    })
   }
 
   logout(){

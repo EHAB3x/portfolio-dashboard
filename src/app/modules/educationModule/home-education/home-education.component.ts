@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { SharedTableComponent } from '../../../shared/shared-table/shared-table.component';
 import { EducationApiService } from '../../../core/services/education-api.service';
 import { IEducation } from '../../../core/interfaces/ieducation';
 
+
 @Component({
-  selector: 'app-education',
+  selector: 'app-home-education',
   standalone: true,
   imports: [SharedTableComponent],
-  templateUrl: './education.component.html',
-  styleUrl: './education.component.scss'
+  templateUrl: './home-education.component.html',
+  styleUrl: './home-education.component.scss'
 })
-export class EducationComponent implements OnInit{
+export class HomeEducationComponent implements OnInit{
   name !: string;
   educationData : IEducation[] = [] as IEducation[];
   searchText : string = '';
