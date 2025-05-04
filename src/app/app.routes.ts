@@ -10,6 +10,7 @@ import { ProjectComponent } from './modules/projectsModule/project/project.compo
 import { HomeProjectComponent } from './modules/projectsModule/home-project/home-project.component';
 import { AddProject } from './modules/projectsModule/add-project/add-project.component';
 import { EditProjectComponent } from './modules/projectsModule/edit-project/edit-project.component';
+import { SkillsComponent } from './modules/skillsModule/skills/skills.component';
 
 export const routes: Routes = [
   {
@@ -59,5 +60,10 @@ export const routes: Routes = [
         component: EditProjectComponent
       }
     ]
+  },
+  {
+    path: 'skills',
+    component: SkillsComponent,
+    canActivate:[authGuard],
   },
 ];
