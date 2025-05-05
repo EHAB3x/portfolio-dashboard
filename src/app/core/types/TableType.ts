@@ -1,3 +1,4 @@
+import { IAdmin } from "../interfaces/iadmin";
 import { IEducation } from "../interfaces/ieducation";
 import { IExperience } from "../interfaces/iexperience";
 import { IProjects } from "../interfaces/iprojects";
@@ -9,4 +10,5 @@ export type TableOptions =
   | IExperience
   | IProjects
   | IServices
-  | ISkills;
+  | ISkills
+  | IAdmin;
