@@ -19,6 +19,7 @@ import { HomeAdminComponent } from './modules/adminModule/home-admin/home-admin.
 import { AddAdminComponent } from './modules/adminModule/add-admin/add-admin.component';
 import { EditAdminComponent } from './modules/adminModule/edit-admin/edit-admin.component';
 import { ServiceComponent } from './modules/servicesModule/service/service.component';
+import { HomeServiceComponent } from './modules/servicesModule/home-service/home-service.component';
 
 export const routes: Routes = [
   {
@@ -108,6 +109,12 @@ export const routes: Routes = [
   },
   {
     path: 'services',
-    component: ServiceComponent
+    component: ServiceComponent,
+    children:[
+      {
+        path:'',
+        component: HomeServiceComponent,
+      }
+    ]
   }
 ];
