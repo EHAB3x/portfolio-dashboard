@@ -14,6 +14,7 @@ import { SkillsComponent } from './modules/skillsModule/skills/skills.component'
 import { HomeSkillsComponent } from './modules/skillsModule/home-skills/home-skills.component';
 import { AddSkillsComponent } from './modules/skillsModule/add-skills/add-skills.component';
 import { EditSkillsComponent } from './modules/skillsModule/edit-skills/edit-skills.component';
+import { AdminComponent } from './modules/adminModule/admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -83,4 +84,8 @@ export const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'admins',
+    component: AdminComponent,
+  }
 ];
