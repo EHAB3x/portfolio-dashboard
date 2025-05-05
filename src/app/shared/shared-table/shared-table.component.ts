@@ -6,12 +6,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { TableOptions } from '../../core/types/TableType';
 import { PaginationComponent } from "../pagination/pagination.component";
-import { SpinnerComponent } from "../spinner/spinner.component";
 
 @Component({
   selector: 'app-shared-table',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule, PaginationComponent, SpinnerComponent],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, PaginationComponent],
   templateUrl: './shared-table.component.html',
   styleUrls: ['./shared-table.component.scss'],
 })
