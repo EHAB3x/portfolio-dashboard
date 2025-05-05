@@ -1,27 +1,104 @@
-# PortfolioDashboard
+# Portfolio Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+A responsive and dynamic portfolio dashboard built with Angular, TailwindCSS, and Flowbite. This project allows users to manage and showcase their skills, projects, services, experience and education.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Authentication** – Login and logout functionality.
+- **Dynamic Dashboard** – Manage and display skills, projects, and education.
+- **Search and Pagination** – Browse through content efficiently.
+- **Responsive Design** – Optimized for all screen sizes using TailwindCSS and Flowbite.
+- **Standalone Components** – Modular Angular components for reusability.
 
-## Code scaffolding
+## Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Angular CLI](https://angular.io/cli) (v17 or higher)
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd portfolio-dashboard
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Update environment configuration:
+   ```bash
+   Open src/environments/environment.ts
+   ```
 
-## Running unit tests
+# Running the Application
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start the development server:
 
-## Running end-to-end tests
+```bash
+npm start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The app will run at http://localhost:4200
 
-## Further help
+# Building for Production
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To create a production build:
+
+```bash
+npm run build
+```
+
+The output will be located in the dist/ folder.
+
+# Testing
+
+To execute unit tests:
+
+```bash
+npm test
+```
+
+# Project Structure
+
+```bash
+src/
+├── app/
+│   ├── core/          # Services, interfaces, guards
+│   ├── layouts/       # Global layout components (header, footer)
+│   ├── modules/       # Feature modules (skills, projects, education, experience, services)
+│   ├── pages/         # Page-level components (home, login, dashboard)
+│   ├── shared/        # Shared UI components (spinner, pagination, etc.)
+├── assets/            # Images, fonts, and static assets
+├── environments/      # Environment-specific configuration
+```
+
+# Dependencies
+
+- Angular – Frontend framework.
+
+- TailwindCSS – Utility-first CSS framework.
+
+- Flowbite – Pre-built Tailwind UI components.
+
+- Angular Notifier – Toast-style notifications.
+
+# Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repo
+
+2. Create your feature branch (git checkout -b feature/YourFeature)
+
+3. Commit your changes (git commit -m 'Add YourFeature')
+
+4. Push to the branch (git push origin feature/YourFeature)
+
+5. Open a pull request
+
+# Acknowledgments
+- [Angular](https://angular.dev)
+
+- [TailwindCSS](https://tailwindcss.com/)
+
+- [Flowbite](https://flowbite.com/)
