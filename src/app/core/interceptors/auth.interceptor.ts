@@ -1,11 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthServiceService } from '../services/auth-service.service'; // adjust path if needed
+import { AuthServiceService } from '../services/auth-service.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthServiceService);
   const token = authService.getToken();
-
   if (token) {
     const clonedReq = req.clone({
       setHeaders: {
@@ -13,7 +12,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       }
     });
     return next(clonedReq);
-
   }
 
   return next(req);
