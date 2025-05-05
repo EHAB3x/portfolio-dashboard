@@ -13,6 +13,7 @@ import { EditProjectComponent } from './modules/projectsModule/edit-project/edit
 import { SkillsComponent } from './modules/skillsModule/skills/skills.component';
 import { HomeSkillsComponent } from './modules/skillsModule/home-skills/home-skills.component';
 import { AddSkillsComponent } from './modules/skillsModule/add-skills/add-skills.component';
+import { EditSkillsComponent } from './modules/skillsModule/edit-skills/edit-skills.component';
 
 export const routes: Routes = [
   {
@@ -76,6 +77,10 @@ export const routes: Routes = [
         path:"add-skills",
         component: AddSkillsComponent
       },
+      {
+        path:"edit-skills/:skillId",
+        component: EditSkillsComponent
+      }
     ]
   },
 ];
