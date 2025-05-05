@@ -5,6 +5,7 @@ import { ILoginResponse } from '../interfaces/ilogin-response';
 import { environment } from '../../../environments/environment';
 import { ILoginData } from '../interfaces/ilogin-data';
 import { Router } from '@angular/router';
+import { IAdmin } from '../interfaces/iadmin';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,23 @@ export class AuthServiceService {
     else{
       return ""
     }
+  }
+
+  getAllAdmins(): Observable<IAdmin[]>{
+    return this.httpClient.get<IAdmin[]>(`${environment.baseUrl}/Auth/Admins`);
+  }
+
+  addAdmin(newAdmin : IAdmin): Observable<void>{
+    return this.httpClient.post<void>(`${environment.baseUrl}/Auth/Admins`,
+      newAdmin
+    );
+  }
+
+  deleteAdmin(adminId: number): Observable<void>{
+    return this.httpClient.delete<void>(`${environment.baseUrl}/Auth/Admins/${adminId}`);
+  }
+
+  getAdminById(adminId: number): Observable<IAdmin>{
+    return this.httpClient.get<IAdmin>(`${environment.baseUrl}/Auth/Admins/${adminId}`);
   }
 }
