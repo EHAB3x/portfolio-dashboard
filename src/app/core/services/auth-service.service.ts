@@ -72,4 +72,8 @@ export class AuthServiceService {
   deleteAdmin(adminId: number): Observable<void>{
     return this.httpClient.delete<void>(`${environment.baseUrl}/Auth/Admins/${adminId}`);
   }
+
+  getAdminById(adminId: number): Observable<IAdmin>{
+    return this.httpClient.get<IAdmin>(`${environment.baseUrl}/Auth/Admins/${adminId}`);
+  }
 }
