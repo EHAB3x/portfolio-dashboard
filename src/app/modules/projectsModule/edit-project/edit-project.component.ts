@@ -76,7 +76,7 @@ export class EditProjectComponent  implements OnInit{
 
   }
 
-  deleteEducation(){
+  deleteProjects(){
     this.projectService.deleteProject(this.prjID).subscribe({
       next:()=>{
         this.projectService.getAllProjects();
