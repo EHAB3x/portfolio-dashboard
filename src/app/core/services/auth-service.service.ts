@@ -64,9 +64,9 @@ export class AuthServiceService {
   }
 
   addAdmin(newAdmin : IAdmin): Observable<void>{
-    return this.httpClient.post<void>(`${environment.baseUrl}/Auth/Admins`,{
+    return this.httpClient.post<void>(`${environment.baseUrl}/Auth/Admins`,
       newAdmin
-    });
+    );
   }
 
   deleteAdmin(adminId: number): Observable<void>{
