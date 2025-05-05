@@ -57,8 +57,6 @@ export class EditProjectComponent  implements OnInit{
   onSubmit(){
     this.newPrj = {...this.editEducationForm.value, id: this.prjID};
 
-    console.log(this.newPrj);
-
     this.projectService.updatePrjById(this.prjID, this.newPrj).subscribe({
       next:()=>{
         this.projectService.getAllProjects();
@@ -78,7 +76,7 @@ export class EditProjectComponent  implements OnInit{
 
   }
 
-  deleteEducation(){
+  deleteProjects(){
     this.projectService.deleteProject(this.prjID).subscribe({
       next:()=>{
         this.projectService.getAllProjects();

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProjects } from '../../../core/interfaces/iprojects';
 import { Router } from '@angular/router';
 import { ProjectApiService } from '../../../core/services/project-api.service';
@@ -11,10 +11,9 @@ import { SharedTableComponent } from "../../../shared/shared-table/shared-table.
   templateUrl: './home-project.component.html',
   styleUrl: './home-project.component.scss',
 })
-export class HomeProjectComponent {
+export class HomeProjectComponent implements OnInit{
   name!: string;
   projectData: IProjects[] = [] as IProjects[];
-  searchText: string = '';
 
   constructor(
     private router: Router,

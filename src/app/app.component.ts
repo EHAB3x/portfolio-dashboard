@@ -20,10 +20,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    window.onload=()=>{
-      if(window.localStorage.getItem("token")){
-        this.authService.getAuthStatus().next(true);
-      }
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      this.authService.getAuthStatus().next(true);
     }
   }
 

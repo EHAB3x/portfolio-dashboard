@@ -10,6 +10,10 @@ import { ProjectComponent } from './modules/projectsModule/project/project.compo
 import { HomeProjectComponent } from './modules/projectsModule/home-project/home-project.component';
 import { AddProject } from './modules/projectsModule/add-project/add-project.component';
 import { EditProjectComponent } from './modules/projectsModule/edit-project/edit-project.component';
+import { SkillsComponent } from './modules/skillsModule/skills/skills.component';
+import { HomeSkillsComponent } from './modules/skillsModule/home-skills/home-skills.component';
+import { AddSkillsComponent } from './modules/skillsModule/add-skills/add-skills.component';
+import { EditSkillsComponent } from './modules/skillsModule/edit-skills/edit-skills.component';
 
 export const routes: Routes = [
   {
@@ -57,6 +61,25 @@ export const routes: Routes = [
       {
         path:"edit-projects/:prjId",
         component: EditProjectComponent
+      }
+    ]
+  },
+  {
+    path: 'skills',
+    component: SkillsComponent,
+    canActivate:[authGuard],
+    children:[
+      {
+        path: '',
+        component: HomeSkillsComponent,
+      },
+      {
+        path:"add-skills",
+        component: AddSkillsComponent
+      },
+      {
+        path:"edit-skills/:skillId",
+        component: EditSkillsComponent
       }
     ]
   },
