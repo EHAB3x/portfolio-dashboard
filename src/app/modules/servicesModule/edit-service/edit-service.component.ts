@@ -26,30 +26,27 @@ export class EditServiceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get the service ID from the route
     const idParam = this.activeRoute.snapshot.paramMap.get('serviceId');
     if (idParam) {
       this.serviceID = Number(idParam);
     }
 
-    // Initialize the form with empty values
     this.editServiceForm = this.fb.group({
       title: ['', Validators.required],
       icon: ['', Validators.required],
       description: ['', Validators.required],
-      features: this.fb.array([]) // Initialize as empty FormArray
+      features: this.fb.array([])
     });
 
-    // Fetch the service data and populate the form
     this.servicesService.getServiceById(this.serviceID).subscribe({
       next: (res) => {
         this.oldService = res;
-        // Populate the FormArray with features
+
         const featureControls = res.features.map(feature =>
           this.fb.control(feature, Validators.required)
         );
+
         this.editServiceForm.setControl('features', this.fb.array(featureControls));
-        // Patch the rest of the form values
         this.editServiceForm.patchValue({
           title: res.title,
           icon: res.icon,
@@ -62,17 +59,14 @@ export class EditServiceComponent implements OnInit {
     });
   }
 
-  // Getter for the features FormArray
   get features(): FormArray<FormControl> {
     return this.editServiceForm.get('features') as FormArray<FormControl>;
   }
 
-  // Add a new feature input to the FormArray
   addFeature(): void {
     this.features.push(this.fb.control('', Validators.required));
   }
 
-  // Remove a feature input by index
   removeFeature(index: number): void {
     this.features.removeAt(index);
   }
@@ -89,7 +83,7 @@ export class EditServiceComponent implements OnInit {
 
       this.servicesService.updateServiceById(this.serviceID, updatedService).subscribe({
         next: () => {
-          this.servicesService.getAllServices(); // Refresh services (consider if necessary)
+          this.servicesService.getAllServices();
           this.notifier.notify('success', 'Service Updated Successfully');
           this.router.navigateByUrl('/services');
         },
@@ -105,7 +99,7 @@ export class EditServiceComponent implements OnInit {
   deleteService(): void {
     this.servicesService.deleteService(this.serviceID).subscribe({
       next: () => {
-        this.servicesService.getAllServices(); // Refresh services (consider if necessary)
+        this.servicesService.getAllServices();
         this.notifier.notify('success', 'Service Deleted Successfully');
         this.router.navigateByUrl('/services');
       },
