@@ -18,6 +18,10 @@ import { AdminComponent } from './modules/adminModule/admin/admin.component';
 import { HomeAdminComponent } from './modules/adminModule/home-admin/home-admin.component';
 import { AddAdminComponent } from './modules/adminModule/add-admin/add-admin.component';
 import { EditAdminComponent } from './modules/adminModule/edit-admin/edit-admin.component';
+import { ServiceComponent } from './modules/servicesModule/service/service.component';
+import { HomeServiceComponent } from './modules/servicesModule/home-service/home-service.component';
+import { AddServiceComponent } from './modules/servicesModule/add-service/add-service.component';
+import { EditServiceComponent } from './modules/servicesModule/edit-service/edit-service.component';
 
 export const routes: Routes = [
   {
@@ -102,6 +106,24 @@ export const routes: Routes = [
       {
         path: 'edit-admins/:adminId',
         component: EditAdminComponent
+      },
+    ]
+  },
+  {
+    path: 'services',
+    component: ServiceComponent,
+    children:[
+      {
+        path:'',
+        component: HomeServiceComponent,
+      },
+      {
+        path:'add-services',
+        component: AddServiceComponent,
+      },
+      {
+        path:'edit-services/:serviceId',
+        component: EditServiceComponent
       },
     ]
   }
