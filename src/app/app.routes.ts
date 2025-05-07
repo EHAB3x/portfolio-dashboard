@@ -21,6 +21,7 @@ import { EditAdminComponent } from './modules/adminModule/edit-admin/edit-admin.
 import { ServiceComponent } from './modules/servicesModule/service/service.component';
 import { HomeServiceComponent } from './modules/servicesModule/home-service/home-service.component';
 import { AddServiceComponent } from './modules/servicesModule/add-service/add-service.component';
+import { EditServiceComponent } from './modules/servicesModule/edit-service/edit-service.component';
 
 export const routes: Routes = [
   {
@@ -119,6 +120,10 @@ export const routes: Routes = [
       {
         path:'add-services',
         component: AddServiceComponent,
+      },
+      {
+        path:'edit-services/:serviceId',
+        component: EditServiceComponent
       },
     ]
   }
