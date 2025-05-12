@@ -24,14 +24,16 @@ export class HeaderComponent implements OnInit{
     this.authService.getAuthStatus().subscribe({
       next:(status=> {
         this.userStatus = status
+        if(this.userStatus){
+          this.homeService.getHomeData().subscribe({
+            next:(res)=>{
+              this.links = res.map((item)=> item.link.toLowerCase());
+            }
+          })
+        }
       }),
     });
 
-    this.homeService.getHomeData().subscribe({
-      next:(res)=>{
-        this.links = res.map((item)=> item.link.toLowerCase());
-      }
-    })
   }
 
   logout(){
