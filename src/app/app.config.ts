@@ -9,6 +9,7 @@ import { educationRoutes } from './modules/educationModule/education.routes';
 import { projectsRoutes } from './modules/projectsModule/projects.routes';
 import { servicesRoutes } from './modules/servicesModule/services.routes';
 import { skillsRoutes } from './modules/skillsModule/skills.routes';
+import { experiencesRoutes } from './modules/experienceModule/experiences.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
       .concat(projectsRoutes)
       .concat(servicesRoutes)
       .concat(skillsRoutes)
+      .concat(experiencesRoutes)
       .concat(routes)
       ),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor]))
