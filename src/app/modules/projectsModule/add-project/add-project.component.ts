@@ -34,9 +34,9 @@ export class AddProject implements OnInit{
 
   onSubmit(){
     if (this.projectForm.valid) {
-      const newEducation: IProjects = this.projectForm.value;
+      const newProject: IProjects = this.projectForm.value;
 
-      this.projectService.addProject(newEducation).subscribe({
+      this.projectService.addProject(newProject).subscribe({
         next:()=>{
           this.router.navigateByUrl('/projects');
           this.notifier.show({
