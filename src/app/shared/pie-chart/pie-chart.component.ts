@@ -1,0 +1,33 @@
+import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
+import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
+import { IHomePage } from '../../core/interfaces/ihome-page';
+
+@Component({
+  selector: 'app-pie-chart',
+  standalone: true,
+  imports: [NgxChartsModule],
+  templateUrl: './pie-chart.component.html',
+  styleUrl: './pie-chart.component.scss',
+  encapsulation: ViewEncapsulation.None
+})
+export class PieChartComponent implements OnChanges {
+  @Input() homeData!: IHomePage[];
+
+  pieData: { name: string; value: number }[] = [];
+
+  aquaColorScheme = {
+    name: 'customAqua', // Unique name for the scheme
+    selectable: true, // Allow selection in legend
+    group: ScaleType.Ordinal, // Use ordinal scale for categorical data
+    domain: ['#1E90FF', '#4169E1', '#6A5ACD', '#9370DB', '#D8BFD8', '#E6E6FA'],
+  };
+
+  ngOnChanges(): void {
+    if (this.homeData) {
+      this.pieData = this.homeData.map((item) => ({
+        name: item.title,
+        value: item.length,
+      }));
+    }
+  }
+}

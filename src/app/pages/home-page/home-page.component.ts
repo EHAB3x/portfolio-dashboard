@@ -4,11 +4,12 @@ import { IHomePage } from '../../core/interfaces/ihome-page';
 import { RouterLink } from '@angular/router';
 import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { CommonModule } from '@angular/common';
+import { PieChartComponent } from "../../shared/pie-chart/pie-chart.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, SpinnerComponent, CommonModule],
+  imports: [RouterLink, SpinnerComponent, CommonModule, PieChartComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })

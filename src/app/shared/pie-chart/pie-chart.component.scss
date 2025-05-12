@@ -1,0 +1,13 @@
+.pie__chart{
+  height: 500px;
+  .pie-label{
+    fill: white;
+    font-size: 0.8125rem;
+  }
+  .legend-labels{
+    background-color: #2563eb29 !important;
+  }
+  .chart-legend .legend-label:hover{
+    color: white;
+  }
+}
