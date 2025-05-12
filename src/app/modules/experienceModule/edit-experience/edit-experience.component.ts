@@ -75,7 +75,7 @@ export class EditExperienceComponent implements OnInit{
 
   }
 
-  deleteProjects(){
+  deleteExperience(){
     this.experienceService.deleteExperience(this.experienceID).subscribe({
       next:()=>{
         this.experienceService.getAllExperiences();
