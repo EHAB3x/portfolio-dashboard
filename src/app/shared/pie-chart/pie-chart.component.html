@@ -1,14 +1,18 @@
 <div class="pie__chart bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-  <ngx-charts-pie-chart
-    [results]="pieData"
-    [legend]="true"
-    [labels]="true"
-    [doughnut]="true"
-    [gradient]="true"
-    [tooltipDisabled]="false"
-    [scheme]="aquaColorScheme"
-  >
-  </ngx-charts-pie-chart>
+    @if (pieData.length > 0) {
+    <ngx-charts-pie-chart
+      [results]="pieData"
+      [legend]="true"
+      [labels]="true"
+      [doughnut]="true"
+      [gradient]="true"
+      [tooltipDisabled]="false"
+      [scheme]="aquaColorScheme"
+    >
+    </ngx-charts-pie-chart>
 
-  <div class="floating__stats w-fit inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dashboard Statistics</div>
-</div>
+    <div class="floating__stats w-fit inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dashboard Statistics</div>
+    }@else {
+      <app-spinner></app-spinner>
+    }
+  </div>
