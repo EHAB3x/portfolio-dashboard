@@ -17,9 +17,9 @@ export class PieChartComponent implements OnChanges {
   pieData: { name: string; value: number }[] = [];
 
   aquaColorScheme = {
-    name: 'customAqua', // Unique name for the scheme
-    selectable: true, // Allow selection in legend
-    group: ScaleType.Ordinal, // Use ordinal scale for categorical data
+    name: 'customAqua',
+    selectable: true,
+    group: ScaleType.Ordinal,
     domain: ['#1E90FF', '#4169E1', '#6A5ACD', '#9370DB', '#D8BFD8', '#E6E6FA'],
   };
 
