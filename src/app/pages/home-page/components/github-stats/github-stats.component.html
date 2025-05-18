@@ -1,0 +1,69 @@
+<div class="github__stats flex flex-col">
+  <button type="button" class="w-fit mb-4 mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Github Stats</button>
+  <div class="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- user info -->
+        <div class="sm:col-span-2 md:col-span-1 lg:col-span-1 col-span-2 row-span-2 flex flex-col gap-6 p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex gap-3">
+            <img [src]="githubStats?.avatar_url" class="w-[64px] aspect-square rounded-full" alt="user" loading="lazy">
+
+            <div class="flex flex-col justify-between gap-2">
+              <h2 class="text-2xl">{{githubStats?.login}}</h2>
+              <a [href]="githubStats?.html_url" target="_blank" class="font-normal text-gray-700 dark:text-gray-400 underline hover:text-blue-300">{{githubStats?.name}}</a>
+            </div>
+          </div>
+
+          <q class="text-xl">{{githubStats?.bio}}</q>
+
+          <div class="flex items-center gap-3">
+            <div inlineSVG="github-stats/company.svg"></div>
+            <p class="text-md">{{githubStats?.company}}</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div inlineSVG="github-stats/location.svg"></div>
+            <p class="text-md">{{githubStats?.location}}</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div inlineSVG="github-stats/plan.svg"></div>
+            <p class="text-md capitalize">{{githubStats?.plan?.name}}</p>
+          </div>
+        </div>
+
+        <!-- Followers -->
+        <div class="flex flex-col justify-between items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Followers</h5>
+
+          <div inlineSVG="github-stats/followers.svg"></div>
+
+          <div class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{githubStats?.followers}}</div>
+        </div>
+
+        <!-- Following -->
+        <div class="flex flex-col justify-between items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Following</h5>
+
+          <div inlineSVG="github-stats/following.svg"></div>
+
+          <div class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{githubStats?.following}}</div>
+        </div>
+
+        <!-- Public Repos -->
+        <div class="flex flex-col justify-between items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Public Repos</h5>
+
+          <div inlineSVG="github-stats/open.svg"></div>
+
+          <div class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{githubStats?.public_repos}}</div>
+        </div>
+
+        <!-- Private Repos -->
+        <div class="flex flex-col justify-between items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Private Repos</h5>
+
+          <div inlineSVG="github-stats/close.svg"></div>
+
+          <div class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{githubStats?.total_private_repos}}</div>
+        </div>
+    </div>
+</div>
