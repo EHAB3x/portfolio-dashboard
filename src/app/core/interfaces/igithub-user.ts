@@ -31,4 +31,13 @@ export interface IGithubUser {
   following: number;
   created_at: string;
   updated_at: string;
+  plan : plan
+  total_private_repos: number
+}
+
+export interface plan {
+  collaborators: number;
+  name: string;
+  private_repos: number;
+  space: number;
 }
