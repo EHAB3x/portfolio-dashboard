@@ -1,5 +1,5 @@
 @import "global";
-.pie__chart{
+.chart__container{
   position: relative;
   min-height: 500px;
   padding-top: 2rem;
@@ -14,17 +14,7 @@
     color: white;
   }
 
-  .floating__stats{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
   @media screen and (max-width: $max_mobile){
-    // height: unset;
     .ngx-charts-outer{
       display: flex;
       flex-direction: column;
