@@ -27,4 +27,8 @@ export class GithubStatsComponent implements OnInit{
     });
   }
 
+  getAllRepos(){
+    return Number(this.githubStats?.public_repos) +  Number(this.githubStats?.total_private_repos)
+  }
+
 }
