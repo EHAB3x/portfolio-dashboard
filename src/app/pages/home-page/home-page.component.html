@@ -2,12 +2,15 @@
   <div class="container mx-auto flex flex-col gap-8">
     <h1 class="text-2xl text-center font-bold">Welcome To the Dashboard</h1>
 
-    <div
-      *ngIf="dataLoaded"
-      class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-    >
-      @for (item of homeCards; track item.length) {
-        <app-home-card [cardDetails]="item"></app-home-card>
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @if (dataLoaded) {
+        @for (item of homeCards; track item.title) {
+          <app-home-card [cardDetails]="item"></app-home-card>
+        }
+      }@else {
+        @for (item of cardsLength; track $index) {
+          <app-card-content-skeleton></app-card-content-skeleton>
+        }
       }
     </div>
 
