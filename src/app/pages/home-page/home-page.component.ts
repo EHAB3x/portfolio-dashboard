@@ -6,11 +6,12 @@ import { PieChartComponent } from "../../shared/pie-chart/pie-chart.component";
 import { GithubStatsComponent } from "./components/github-stats/github-stats.component";
 import { HomeCardComponent } from './components/home-card/home-card.component';
 import { CardContentSkeletonComponent } from '../../shared/skeletons/card-content-skeleton/card-content-skeleton.component';
+import { FooterComponent } from "../../layouts/footer/footer.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, HomeCardComponent ,PieChartComponent, GithubStatsComponent, CardContentSkeletonComponent],
+  imports: [CommonModule, HomeCardComponent, PieChartComponent, GithubStatsComponent, CardContentSkeletonComponent, FooterComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
