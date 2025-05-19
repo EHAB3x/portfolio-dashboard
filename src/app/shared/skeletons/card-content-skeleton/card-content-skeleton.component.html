@@ -1,8 +1,8 @@
 
-<div role="status" class="animate-pulse flex flex-col justify-between gap-2.5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<div role="status" class="h-full animate-pulse flex flex-col justify-between gap-2.5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-2"></div>
     <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-3"></div>
-    <div class="h-6 w-25 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 animate-pulse"></div>
+    <div *ngIf="showButton" class="h-6 w-25 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 animate-pulse"></div>
     <span class="sr-only">Loading...</span>
 </div>
 
