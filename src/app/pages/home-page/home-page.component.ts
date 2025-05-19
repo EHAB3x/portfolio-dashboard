@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePageService } from '../../core/services/home-page.service';
 import { IHomePage } from '../../core/interfaces/ihome-page';
-import { RouterLink } from '@angular/router';
-import { SpinnerComponent } from "../../shared/spinner/spinner.component";
 import { CommonModule } from '@angular/common';
 import { PieChartComponent } from "../../shared/pie-chart/pie-chart.component";
 import { GithubStatsComponent } from "./components/github-stats/github-stats.component";
+import { HomeCardComponent } from './components/home-card/home-card.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, SpinnerComponent, CommonModule, PieChartComponent, GithubStatsComponent],
+  imports: [CommonModule, HomeCardComponent ,PieChartComponent, GithubStatsComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
