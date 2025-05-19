@@ -1,7 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@import './assets/scss/styles.scss';
+@import "./assets/scss/styles.scss";
 @import "angular-notifier/styles";
 
+* {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2563eb29;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2563eb;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0f53e6;
+  }
+}
 .container {
   padding: 0 1.25rem;
   @media screen and (max-width: $max_mobile) {

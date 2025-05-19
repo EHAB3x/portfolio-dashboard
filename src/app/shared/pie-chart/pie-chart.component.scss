@@ -1,0 +1,45 @@
+@import "global";
+.chart__container{
+  position: relative;
+  min-height: 500px;
+  padding-top: 2rem;
+  .pie-label{
+    fill: white;
+    font-size: 0.8125rem;
+  }
+  .legend-labels{
+    background-color: #2563eb29 !important;
+  }
+  .chart-legend .legend-label:hover{
+    color: white;
+  }
+
+  @media screen and (max-width: $max_mobile){
+    .ngx-charts-outer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100% !important;
+      position: relative;
+
+      .chart-legend{
+        width: 100% !important;
+        position: absolute;
+        bottom: 0;
+        div:first-child{
+          width: 100% !important;
+        }
+        .legend-title{
+          display: none;
+        }
+
+        .legend-labels{
+          display: flex;
+          gap: 0.25rem;
+          overflow-x: auto;
+        }
+      }
+
+    }
+  }
+}

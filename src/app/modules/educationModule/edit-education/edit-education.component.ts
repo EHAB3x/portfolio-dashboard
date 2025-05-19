@@ -60,7 +60,7 @@ export class EditEducationComponent implements OnInit{
         this.educationService.getAllEducation();
         this.notifier.show({
           type: 'success',
-          message:"Product Updated Successfully",
+          message:"Education Updated Successfully",
         });
         this.router.navigateByUrl("/educations")
       },

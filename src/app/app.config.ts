@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,6 +10,7 @@ import { projectsRoutes } from './modules/projectsModule/projects.routes';
 import { servicesRoutes } from './modules/servicesModule/services.routes';
 import { skillsRoutes } from './modules/skillsModule/skills.routes';
 import { experiencesRoutes } from './modules/experienceModule/experiences.routes';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +24,10 @@ export const appConfig: ApplicationConfig = {
       .concat(experiencesRoutes)
       .concat(routes)
       ),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor]))
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    importProvidersFrom(InlineSVGModule.forRoot({
+      baseUrl:'../assets/media/svg/',
+      bypassHttpClientInterceptorChain: true,
+    }))
   ]
 };

@@ -4,9 +4,9 @@
 
     <app-spinner *ngIf="!dataLoaded "></app-spinner>
 
-    <div *ngIf="dataLoaded " class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
+    <div *ngIf="dataLoaded " class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       @for (item of homeCards; track item.length) {
-        <div class="home__card flex flex-col justify-between max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <div class="home__card flex flex-col justify-between p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{item.title}}</h5>
 
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{item.description}}</p>
@@ -22,6 +22,10 @@
         </div>
       }
     </div>
+
+    <app-pie-chart [homeData]="homeCards"></app-pie-chart>
+
+    <app-github-stats></app-github-stats>
   </div>
 
 </div>
