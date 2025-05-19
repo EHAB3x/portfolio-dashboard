@@ -6,10 +6,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthServiceService);
   const token = authService.getToken();
 
-  if (req.url.startsWith('https://api.github.com')) {
+  if (req.url.startsWith('https://api.github.com') || req.url.startsWith('https://api.imgbb.com/1/upload')) {
     return next(req);
   }
-  
+
   if (token) {
     const clonedReq = req.clone({
       setHeaders: {
