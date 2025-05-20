@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { IHomePage } from '../../core/interfaces/ihome-page';
-import { SpinnerComponent } from '../spinner/spinner.component';
+import { ChartSkeletonComponent } from '../skeletons/chart-skeleton/chart-skeleton.component';
 
 @Component({
   selector: 'app-pie-chart',
   standalone: true,
-  imports: [NgxChartsModule, SpinnerComponent],
+  imports: [NgxChartsModule, ChartSkeletonComponent],
   templateUrl: './pie-chart.component.html',
   styleUrl: './pie-chart.component.scss',
   encapsulation: ViewEncapsulation.None
