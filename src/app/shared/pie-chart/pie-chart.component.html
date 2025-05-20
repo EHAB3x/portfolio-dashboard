@@ -3,7 +3,6 @@
 
   @if (homeData.length > 0) {
     <div class="chart__container bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        @if (pieData.length > 0) {
         <ngx-charts-pie-chart
           [results]="pieData"
           [legend]="true"
@@ -14,10 +13,6 @@
           [scheme]="aquaColorScheme"
         >
         </ngx-charts-pie-chart>
-
-        }@else {
-          <app-spinner></app-spinner>
-        }
       </div>
   }@else {
     <app-chart-skeleton></app-chart-skeleton>
