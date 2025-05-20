@@ -3,7 +3,7 @@
     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
       Edit #{{prjID}} Project
     </h2>
-    <form [formGroup]="editEducationForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
       <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div class="sm:col-span-2">
           <label
@@ -57,19 +57,58 @@
         </div>
         <div class="sm:col-span-2">
           <label
-            for="imgUrl"
+            for="img"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Img URL</label
+            >Project Image</label
           >
           <input
-            formControlName="img"
-            type="text"
-            name="date"
-            id="imgUrl"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="https:example.com"
-            required
+          formControlName="img"
+          type="text"
+          name="img"
+          id="imgUrl"
+          class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+          placeholder="Image URL will appear here"
+          readonly
           />
+          <div class="flex items-center gap-4">
+            <div class="flex gap-4">
+              <label
+                class="cursor-pointer flex items-center gap-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              >
+                <span>Choose Image</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="img"
+                  class="hidden"
+                  (change)="onFileSelected($event)"
+                  [disabled]="isUploading"
+                />
+              </label>
+              <label
+                class="cursor-pointer flex items-center gap-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                *ngIf="editProjectForm.get('img')?.value"
+                (click)="openModel()"
+              >
+                <span>View Image</span>
+              </label>
+
+            </div>
+            <span *ngIf="isUploading" class="text-sm text-gray-500"
+              >Uploading...</span
+            >
+          </div>
+          <ng-container *ngIf="viewImg" class="mt-2">
+            <app-image-modal
+              modalHeader="View Project Image"
+              [imgUrl]="editProjectForm.get('img')?.value"
+              (closeModel)="closeModel($event)"
+            >
+            </app-image-modal>
+          </ng-container>
+          <div *ngIf="uploadError" class="mt-2 text-sm text-red-600">
+            {{ uploadError }}
+          </div>
         </div>
       </div>
       <div class="flex flex-wrap items-center gap-3 mt-8">
