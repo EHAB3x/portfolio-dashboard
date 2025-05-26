@@ -66,7 +66,7 @@ export class EditAdminComponent implements OnInit{
     }else{
       this.notifier.show({
         type: 'error',
-        message:"This is the last admin you can't delete it",
+        message:"Must be at least one admin",
       });
     }
   }
