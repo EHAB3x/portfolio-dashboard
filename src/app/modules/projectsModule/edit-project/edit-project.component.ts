@@ -117,7 +117,7 @@ export class EditProjectComponent  implements OnInit{
         this.projectService.getAllProjects();
         this.notifier.show({
           type: 'success',
-          message:"Product Updated Successfully",
+          message:"Project Updated Successfully",
         });
         this.router.navigateByUrl("/projects")
       },
@@ -137,7 +137,7 @@ export class EditProjectComponent  implements OnInit{
         this.projectService.getAllProjects();
         this.notifier.show({
           type: 'success',
-          message:"Education Deleted Successfully",
+          message:"Project Deleted Successfully",
         });
         this.router.navigateByUrl("/projects")
       },

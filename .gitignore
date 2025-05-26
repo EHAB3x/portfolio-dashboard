@@ -43,3 +43,9 @@ Thumbs.db
 
 # System environments
 src/environments/*
+
+# Local Netlify folder
+.netlify
+
+# deploy scripts
+deploy-scripts
