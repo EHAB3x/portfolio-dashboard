@@ -46,3 +46,6 @@ src/environments/*
 
 # Local Netlify folder
 .netlify
+
+# deploy scripts
+deploy-scripts
