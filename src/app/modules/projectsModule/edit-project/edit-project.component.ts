@@ -1,72 +1,109 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IProjects } from '../../../core/interfaces/iprojects';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProjectApiService } from '../../../core/services/project-api.service';
 import { NotifierService } from 'angular-notifier';
 import { UploadImageService } from '../../../core/services/upload-image.service';
-import { ImageModalComponent } from "../../../shared/image-modal/image-modal.component";
+import { ImageModalComponent } from '../../../shared/image-modal/image-modal.component';
 
 @Component({
   selector: 'app-edit-project',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, ImageModalComponent],
   templateUrl: './edit-project.component.html',
-  styleUrl: './edit-project.component.scss'
+  styleUrl: './edit-project.component.scss',
 })
-export class EditProjectComponent  implements OnInit{
-  prjID !: number;
-  oldPrj : IProjects = {} as IProjects;
-  newPrj !: IProjects;
-  editProjectForm !: FormGroup;
+export class EditProjectComponent implements OnInit {
+  prjID!: number;
+  editProjectForm!: FormGroup;
   isUploading = false;
-  viewImg : boolean = false;
+  viewImg: boolean = false;
   uploadError: string | null = null;
   selectedFile: File | null = null;
 
-  constructor(
-    private fb : FormBuilder,
-    private activeRoute : ActivatedRoute,
-    private projectService : ProjectApiService,
-    private notifier : NotifierService,
-    private router : Router,
-    private uploadImgService: UploadImageService
+  // Array to hold project tags/skills
+  tagsList: string[] = [];
 
-  ){}
+  constructor(
+    private fb: FormBuilder,
+    private activeRoute: ActivatedRoute,
+    private projectService: ProjectApiService,
+    private notifier: NotifierService,
+    private router: Router,
+    private uploadImgService: UploadImageService,
+  ) {}
 
   ngOnInit(): void {
-    const idParam = this.activeRoute.snapshot.paramMap.get("prjId");
+    // 1. Initialize the form structure immediately with empty values
+    this.editProjectForm = this.fb.group({
+      title: ['', Validators.required],
+      category: ['', Validators.required],
+      link: ['', Validators.required],
+      img: ['', Validators.required],
+      description: ['', Validators.required],
+      tagInput: [''],
+    });
 
+    // 2. Get the project ID from route params
+    const idParam = this.activeRoute.snapshot.paramMap.get('prjId');
     if (idParam) {
       this.prjID = Number(idParam);
+      this.loadProjectData();
     }
-
-    this.projectService.getProjectById(this.prjID).subscribe({
-      next:(res)=>{
-        this.oldPrj = res;
-        this.editProjectForm.patchValue({
-          title:res.title,
-          img:res.img,
-          link:res.link,
-          category:res.category,
-        })
-      }
-    })
-    this.editProjectForm = this.fb.group({
-      title: [this.oldPrj.title, Validators.required],
-      img: [this.oldPrj.img, Validators.required],
-      link: [this.oldPrj.link, Validators.required],
-      category: [this.oldPrj.category, Validators.required],
-    })
-
   }
 
-  closeModel(status: boolean){
+  loadProjectData(): void {
+    this.projectService.getProjectById(this.prjID).subscribe({
+      next: (res: any) => {
+        // Populate form values
+        this.editProjectForm.patchValue({
+          title: res.title,
+          category: res.category,
+          link: res.link,
+          img: res.img,
+          description: res.description,
+        });
+
+        // Load existing tags if available from the backend
+        if (res.tags && Array.isArray(res.tags)) {
+          this.tagsList = [...res.tags];
+        }
+      },
+      error: (err) => {
+        this.notifier.show({
+          type: 'error',
+          message: 'Failed to load project details',
+        });
+      },
+    });
+  }
+
+  // Tag management methods
+  addTag(event: any): void {
+    const inputTag = event.target.value.trim();
+    if (inputTag && !this.tagsList.includes(inputTag)) {
+      this.tagsList.push(inputTag);
+      this.editProjectForm.patchValue({ tagInput: '' });
+    }
+    event.preventDefault();
+  }
+
+  removeTag(index: number): void {
+    this.tagsList.splice(index, 1);
+  }
+
+  closeModel(status: boolean) {
     this.viewImg = status;
   }
 
-  openModel(){
+  openModel() {
     this.viewImg = true;
   }
 
@@ -105,48 +142,65 @@ export class EditProjectComponent  implements OnInit{
           message: this.uploadError,
         });
         console.error(err);
-      }
+      },
     });
   }
 
-  onSubmit(){
-    this.newPrj = {...this.editProjectForm.value, id: this.prjID};
+  onSubmit() {
+    if (this.editProjectForm.valid) {
+      const formVal = this.editProjectForm.value;
 
-    this.projectService.updatePrjById(this.prjID, this.newPrj).subscribe({
-      next:()=>{
-        this.projectService.getAllProjects();
-        this.notifier.show({
-          type: 'success',
-          message:"Project Updated Successfully",
-        });
-        this.router.navigateByUrl("/projects")
-      },
-      error:()=>{
-        this.notifier.show({
-          type: 'error',
-          message:"Something Went Wrong",
-        });
-      }
-    })
+      // Construct updated project payload including description and tags array
+      const updatedProject = {
+        id: this.prjID,
+        title: formVal.title,
+        category: formVal.category,
+        link: formVal.link,
+        img: formVal.img,
+        description: formVal.description,
+        tags: this.tagsList,
+      };
 
+      this.projectService
+        .updatePrjById(this.prjID, updatedProject as any)
+        .subscribe({
+          next: () => {
+            this.notifier.show({
+              type: 'success',
+              message: 'Project Updated Successfully',
+            });
+            this.router.navigateByUrl('/projects');
+          },
+          error: () => {
+            this.notifier.show({
+              type: 'error',
+              message: 'Something Went Wrong',
+            });
+          },
+        });
+    } else {
+      this.notifier.show({
+        type: 'error',
+        message: 'Please check all required fields',
+      });
+    }
   }
 
-  deleteProjects(){
+  deleteProjects() {
     this.projectService.deleteProject(this.prjID).subscribe({
-      next:()=>{
-        this.projectService.getAllProjects();
+      next: () => {
         this.notifier.show({
           type: 'success',
-          message:"Project Deleted Successfully",
+          message: 'Project Deleted Successfully',
         });
-        this.router.navigateByUrl("/projects")
+        this.router.navigateByUrl('/projects');
       },
-      error:()=>{
+      error: () => {
         this.notifier.show({
           type: 'error',
-          message:"Something Went Wrong",
+          message: 'Something Went Wrong',
         });
-      }
-    })
+      },
+    });
   }
 }

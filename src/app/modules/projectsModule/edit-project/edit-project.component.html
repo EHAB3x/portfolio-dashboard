@@ -1,10 +1,11 @@
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-      Edit #{{prjID}} Project
+      Edit #{{ prjID }} Project
     </h2>
     <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
       <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+        <!-- Title -->
         <div class="sm:col-span-2">
           <label
             for="title"
@@ -14,31 +15,81 @@
           <input
             formControlName="title"
             type="text"
-            name="title"
             id="title"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             placeholder="E-commerce"
             required
           />
         </div>
+
+        <!-- Category -->
         <div class="sm:col-span-2">
           <label
             for="category"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Category
-          </label
+            >Category</label
           >
           <input
             formControlName="category"
             type="text"
-            name="category"
             id="category"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             placeholder="Design"
             required
           />
         </div>
+
+        <!-- Description -->
+        <div class="sm:col-span-2">
+          <label
+            for="description"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Description</label
+          >
+          <textarea
+            formControlName="description"
+            id="description"
+            rows="4"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder="Write project description here..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Tags / Skills Used -->
+        <div class="sm:col-span-2">
+          <label
+            for="tagInput"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Tags / Skills (Press Enter to add)</label
+          >
+          <input
+            formControlName="tagInput"
+            type="text"
+            id="tagInput"
+            (keydown.enter)="addTag($event)"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder="e.g. C#, .NET Core, Angular (press enter)"
+          />
+          <!-- Display Added Tags Badges -->
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span
+              *ngFor="let tag of tagsList; let i = index"
+              class="bg-primary-100 text-primary-800 text-xs font-medium px-2.5 py-1.5 rounded dark:bg-gray-700 dark:text-primary-300 flex items-center gap-1.5 border border-gray-600"
+            >
+              {{ tag }}
+              <button
+                type="button"
+                (click)="removeTag(i)"
+                class="text-red-500 font-bold ml-1 hover:text-red-700"
+              >
+                &times;
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <!-- Link -->
         <div class="sm:col-span-2">
           <label
             for="link"
@@ -48,13 +99,14 @@
           <input
             formControlName="link"
             type="text"
-            name="link"
             id="link"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="https:github.com/example"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder="https://github.com/example"
             required
           />
         </div>
+
+        <!-- Image Upload Section -->
         <div class="sm:col-span-2">
           <label
             for="img"
@@ -62,13 +114,12 @@
             >Project Image</label
           >
           <input
-          formControlName="img"
-          type="text"
-          name="img"
-          id="imgUrl"
-          class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-          placeholder="Image URL will appear here"
-          readonly
+            formControlName="img"
+            type="text"
+            id="imgUrl"
+            class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            placeholder="Image URL will appear here"
+            readonly
           />
           <div class="flex items-center gap-4">
             <div class="flex gap-4">
@@ -92,7 +143,6 @@
               >
                 <span>View Image</span>
               </label>
-
             </div>
             <span *ngIf="isUploading" class="text-sm text-gray-500"
               >Uploading...</span
@@ -111,6 +161,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Action Buttons -->
       <div class="flex flex-wrap items-center gap-3 mt-8">
         <button
           type="submit"
